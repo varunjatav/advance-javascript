@@ -2,9 +2,11 @@
 
 function debounce(func,delay) {
     let id;
-    return function(args){
+    return function(){
+        const args = arguments;
+        const ctx = this;
         clearTimeout(id);
-        id = setTimeout(() => func(args), delay);
+        id = setTimeout(() => func.apply(ctx,args), delay);
     }
 }
 const callAPI = (args)=> {
